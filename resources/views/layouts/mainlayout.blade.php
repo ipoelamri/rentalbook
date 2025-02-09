@@ -53,7 +53,7 @@
                         <a href="/logout">Logout</a>
                     @elseif (Auth::check() && Auth::user()->role_id == 2)
                         <!-- ini untuk client -->
-
+                        <a href="/" @if (request()->route()->uri == '/') class = "active" @endif>Home</a>
                         <a href="/profile" @if (request()->route()->uri == 'profile') class = "active" @endif>Profile</a>
                         <a href="/logout">Logout</a>
                     @else

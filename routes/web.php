@@ -12,13 +12,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\IndexController;
 
-
+Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::group(['middleware' => guestonly::class], function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'authenticating']);
     Route::get('register', [AuthController::class, 'register']);
     Route::post('register', [AuthController::class, 'registering']);
-    Route::get('/', [IndexController::class, 'index']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -32,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::get('book-edit/{slug}', [BookController::class, 'edit']);
         Route::put('book-edit/{slug}', [BookController::class, 'update']);
         Route::delete('book-delete/{slug}', [BookController::class, 'destroy']);
-        Route::get('logout', [AuthController::class, 'logout']);
+
         Route::get('categories', [CategoriesController::class, 'index']);
         Route::get('create-category', [CategoriesController::class, 'create']);
         Route::post('create-category', [CategoriesController::class, 'store']);
@@ -48,5 +47,9 @@ Route::middleware('auth')->group(function () {
         Route::get('user-inactive', [UserController::class, 'inactive']);
         Route::get('rentlog', [RentlogController::class, 'index']);
     });
-    Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(OnlyClient::class);
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::group(['middleware' => OnlyClient::class], function () {
+
+        Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(OnlyClient::class);
+    });
 });
