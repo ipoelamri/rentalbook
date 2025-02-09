@@ -1,0 +1,63 @@
+.main {
+    height: 100vh;
+}
+
+.sidebar {
+    background: #5ecbf5;
+    color: white;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar a:hover {
+    background: #19b1ed;
+}
+
+.active {
+    background: #1090c3;
+}
+
+.card-data {
+    border-radius: 10px;
+    border: solid 1px;
+    padding: 20px 30px;
+}
+
+.card-data.books {
+    background-color: rgb(230, 27, 27);
+    color: white;
+}
+
+.card-data.categories {
+    background: rgb(7, 167, 57);
+    color: white;
+}
+
+.card-data.users {
+    background-color: rgb(4, 129, 246);
+    color: white;
+}
+
+.card-data i {
+    font-size: 100px;
+}
+
+.card-desc {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card-qty {
+    font-size: 20px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto; /* Menjaga rasio gambar tetap */
+}
