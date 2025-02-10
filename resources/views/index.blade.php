@@ -67,7 +67,7 @@
 
                                 <h5 class="card-title">{{ $item->title }}</h5>
                                 <div class="text-center my-4">
-                                    <a href="#" class="btn btn-primary">Borrow Now</a></a>
+                                    <a href="/borrow/{{ $item->id }}" class="btn btn-primary">Borrow Now</a></a>
                                 </div>
                             </div>
                         </div>

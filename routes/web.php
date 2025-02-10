@@ -46,7 +46,16 @@ Route::middleware('auth')->group(function () {
         Route::put('user-updatestatus/{slug}', [UserController::class, 'updateStatus']);
         Route::get('user-inactive', [UserController::class, 'inactive']);
         Route::get('rentlog', [RentlogController::class, 'index']);
+
+        Route::get('/admin/rent-logs', [RentLogController::class, 'index'])->name('admin.rentlogs');
+        Route::post('/admin/rent-logs/{rentLog}/confirm', [RentLogController::class, 'confirm'])->name('admin.rentlogs.confirm');
     });
+
+    Route::get('/rent-receipt/{rentLog}', [RentLogController::class, 'receipt'])->name('rent.receipt');
+
+    Route::get('/borrow/{book}', [RentLogController::class, 'create'])->name('borrow.create');
+    Route::post('/borrow', [RentLogController::class, 'store'])->name('borrow.store');
+
     Route::get('logout', [AuthController::class, 'logout']);
     Route::group(['middleware' => OnlyClient::class], function () {
 
