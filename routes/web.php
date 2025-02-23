@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/admin/rent-logs', [RentLogController::class, 'index'])->name('admin.rentlogs');
         Route::post('/admin/rent-logs/{rentLog}/confirm', [RentLogController::class, 'confirm'])->name('admin.rentlogs.confirm');
+        Route::post('admin/rentlogs/{id}/returned', [RentLogController::class, 'returned'])->name('admin.rentlogs.returned');
     });
 
     Route::get('/rent-receipt/{rentLog}', [RentLogController::class, 'receipt'])->name('rent.receipt');

@@ -16,7 +16,7 @@ class RentlogController extends Controller
 {
     public function index()
     {
-        $rentLogs = RentLog::where('status', 'On Process')->get();
+        $rentLogs = RentLog::all();
         return view('rentlogs', compact('rentLogs'));
     }
 
@@ -52,5 +52,13 @@ class RentlogController extends Controller
     {
         $rentLog->update(['status' => 'Ready']);
         return back()->with('success', 'Peminjaman dikonfirmasi');
+    }
+    public function returned($id)
+    {
+        $log = RentLog::findOrFail($id);
+        $log->status = 'Completed';
+        $log->save();
+
+        return redirect()->back()->with('success', 'Status updated to Done');
     }
 }

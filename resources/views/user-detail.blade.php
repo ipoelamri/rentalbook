@@ -21,14 +21,14 @@
 
                                 <h5 class = "text-primary">{{ $user->username }}</h5>
                                 <p class = "text-muted">User</p>
-                                <i class="far fa-edit mb-5"></i>
+                                <i class="far fa-edit"></i>
                                 <form method="POST" action="/user-updatestatus/{{ $user->slug }}">
                                     @csrf
                                     @method('PUT') {{-- Metode PUT --}}
                                     <input type="hidden" name="status"
                                         value="{{ $user->status == 'active' ? 'inactive' : 'active' }}">
                                     <button type="submit"
-                                        class="btn btn-sm btn-outline-{{ $user->status == 'active' ? 'danger' : 'success' }} ">
+                                        class="btn btn-sm mb-4 btn-outline-{{ $user->status == 'active' ? 'danger' : 'success' }} ">
                                         <i class="bi bi-pencil"></i>
                                         {{ $user->status == 'active' ? 'Set Inactive' : 'Set Active' }}
                                     </button>
@@ -57,13 +57,8 @@
                                                 {{ ucfirst($user->status) }}
                                             </p>
                                         </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="d-flex justify-content-start">
-                                        <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                                        <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                                        <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
