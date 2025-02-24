@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\rentLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -16,7 +17,9 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('profile');
+        $user = auth()->user();
+        // Jika ingin menggunakan halaman khusus untuk user yang sedang login
+        return view('profile', ['user' => $user]);
     }
 
     public function destroy($slug)
@@ -36,8 +39,8 @@ class UserController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'phone' => 'unique:users',
-            'status' => 'required',
+            'phone' => 'required|regex:/^[0-9]+$/',
+            'addres' => 'required',
         ]);
         $user = User::where('slug', $slug)->first();
 
@@ -45,7 +48,7 @@ class UserController extends Controller
 
         Session::flash('status', 'Succes');
         Session::flash('message', 'Succes update category');
-        return redirect('/users');
+        return redirect('/profile')->with('status', 'success')->with('message', 'Status user berhasil diubah');
     }
 
     public function detail(Request $request, $slug)
@@ -79,5 +82,21 @@ class UserController extends Controller
         ])->get();
 
         return view('user-inactive', ['users_list' => $users]);
+    }
+    public function dashboard()
+    {
+        $rentLog = auth()->user()->rentLogs;
+        $user = auth()->user();
+
+        // Hitung jumlah buku yang masih dipinjam dan sudah dikembalikan
+        $borrowedBooks = $user->rentLogs()->where('status', 'On Process')->count();
+        $borrowedReady = $user->rentLogs()->where('status', 'Ready')->count();
+        $returnedBooks = $user->rentLogs()->where('status', 'Completed')->count();
+
+        // Ambil status peminjaman terakhir
+        $latestLoan = $user->rentLogs()->latest()->first();
+        $loanStatus = $latestLoan ? $latestLoan->status : 'No Loan Records';
+
+        return view('dashboard-client', ['rentLogs' => $rentLog], compact('user', 'borrowedBooks', 'returnedBooks', 'borrowedReady'));
     }
 }

@@ -29,7 +29,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a class="navbar-brand" href="#">Rental Buku</a>
+                <a class="navbar-brand" href="#">Perpustakaan Digital</a>
 
 
 
@@ -55,6 +55,8 @@
                         <!-- ini untuk client -->
                         <a href="/" @if (request()->route()->uri == '/') class = "active" @endif>Home</a>
                         <a href="/profile" @if (request()->route()->uri == 'profile') class = "active" @endif>Profile</a>
+                        <a href="/dashboard-user"
+                            @if (request()->route()->uri == 'dashboard-user') class = "active" @endif>Dashboard</a>
                         <a href="/logout">Logout</a>
                     @else
                         <!-- ini untuk guest -->

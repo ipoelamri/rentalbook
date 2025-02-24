@@ -59,6 +59,13 @@ class User extends Authenticatable
             ]
         ];
     }
+    // App\Models\User.php
+
+    public function rentLogs()
+    {
+        return $this->hasMany(RentLog::class, 'user_id');
+    }
+
 
     protected $attributes = [
         'role_id' => 2,

@@ -3,39 +3,60 @@
 @section('title', 'Edit User')
 
 @section('content')
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Edit Profile</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form action="/user-edit/{{ $user->slug }}" method="POST">
+                            @csrf
+                            @method('put')
 
-    <h1>Edit User</h1>
+                            {{-- Username --}}
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                    id="username" name="username" value="{{ $user->username }}"
+                                    placeholder="Enter username" required>
+                                @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
-    <div class="mt-5 w-100 d-flex flex-column align-items-center">
+                            {{-- Phone --}}
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                    id="phone" name="phone" value="{{ $user->phone }}"
+                                    placeholder="Enter phone number" required>
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
-        <form action="/user-edit/{{ $user->slug }}" method="POST" class="w-50">
-            @error('username')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            @csrf
-            @method('put')
-            <div class="mb-3">
-                <label for="username" class="form-label">username</label>
-                <input type="text" class="form-control  @error('username') is-invalid @enderror" id="username"
-                    name="username" value = "{{ $user->username }}" placeholder="username" required>
+                            {{-- Address --}}
+                            <div class="mb-3">
+                                <label for="addres" class="form-label">Address</label>
+                                <input type="text" class="form-control @error('addres') is-invalid @enderror"
+                                    id="addres" name="addres" value="{{ $user->addres }}" placeholder="Enter address"
+                                    required>
+                                @error('addres')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
+                            <button type="submit" class="btn btn-primary w-100">Update</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control  @error('phone') is-invalid @enderror" id="phone"
-                    name="phone" value = "{{ $user->phone }}" placeholder="user phone" required>
-
-            </div>
-
-            <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
-                <select class="form-control @error('status') is-invalid @enderror" id="status" name="status" required>
-                    <option value="active" {{ old('status', $user->status) == 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="inactive" {{ old('status', $user->status) == 'inactive' ? 'selected' : '' }}>Inactive
-                    </option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Update</button>
-        </form>
+        </div>
     </div>
 @endsection

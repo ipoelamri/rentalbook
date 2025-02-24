@@ -61,5 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::group(['middleware' => OnlyClient::class], function () {
 
         Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware(OnlyClient::class);
+        Route::get('user-edit/{slug}', [UserController::class, 'edit']);
+        Route::put('user-edit/{slug}', [UserController::class, 'update']);
+        Route::get('/dashboard-user', [UserController::class, 'dashboard']);
     });
 });

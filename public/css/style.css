@@ -43,6 +43,20 @@
     background-color: rgb(4, 129, 246);
     color: white;
 }
+.card-data.booksready {
+    background-color: rgb(230, 27, 27);
+    color: white;
+}
+
+.card-data.returnedbooks {
+    background: rgb(7, 167, 57);
+    color: white;
+}
+
+.card-data.borrowedbooks {
+    background-color: rgb(255, 193, 7);
+    color: white;
+}
 
 .card-data i {
     font-size: 100px;
