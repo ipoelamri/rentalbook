@@ -4,6 +4,11 @@
 @section('content')
 
     <main>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="text-center mb-5">
             <h1 class="text-primary display-4 fw-bold">List of Books</h1>
 

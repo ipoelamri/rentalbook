@@ -9,7 +9,7 @@
         <a href="books" class="col-lg-4" style="text-decoration: none;">
             <div class="card-data borrowedbooks">
                 <div class="row">
-                    <div class="col-6"><i class="bi bi-journal"></i></div>
+                    <div class="col-6"><i class="bi bi-book"></i></div>
                     <div class="col-6 d-flex flex-column justify-content-center">
                         <div class="card-desc">BORROWED BOOKS </div>
                         <div class="card-qty">{{ $borrowedBooks }}</div>
@@ -20,7 +20,7 @@
         <a href="categories" class="col-lg-4" style="text-decoration: none;">
             <div class="card-data booksready">
                 <div class="row">
-                    <div class="col-6"><i class="bi bi-tags-fill"></i></div>
+                    <div class="col-6"><i class="bi bi-check-circle"></i></div>
                     <div class="col-6 d-flex flex-column justify-content-center">
                         <div class="card-desc">BOOKS READY</div>
                         <div class="card-qty">{{ $borrowedReady }}</div>
@@ -31,7 +31,7 @@
         <a href="users" class="col-lg-4" style="text-decoration: none;">
             <div class="card-data returnedbooks">
                 <div class="row">
-                    <div class="col-6"><i class="bi bi-people-fill"></i></div>
+                    <div class="col-6"><i class="bi bi-arrow-return-left"></i></div>
                     <div class="col-6 d-flex flex-column justify-content-center">
                         <div class="card-desc">RETURNED BOOKS</div>
                         <div class="card-qty">{{ $returnedBooks }}</div>
@@ -57,7 +57,8 @@
                 </thead>
                 <tbody>
                     @forelse($rentLogs as $index => $log)
-                        <tr class="text-center align-middle">
+                        <tr class="text-center align-middle"
+                            onclick="window.location.href='/rent-receipt/{{ $log->id }}'">
                             <td>{{ $index + 1 }}</td>
                             <td><strong>{{ $log->rent_code }}</strong></td>
                             <td>{{ $log->book->title }}</td>

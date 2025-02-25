@@ -3,8 +3,14 @@
 @section('title', 'Profile')
 
 @section('content')
-    <section class="vh-100 ">
+    <section class="h-auto ">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="container py-5 h-100">
+
             <div class="text-center mb-5">
                 <h1 class="text-primary display-4 fw-bold">Detail Profile</h1>
 
@@ -22,8 +28,8 @@
                                 <h5 class = "text-primary">{{ $user->username }}</h5>
                                 <p class = "text-muted">User</p>
                                 <i class="far fa-edit"></i>
-                                <a href="/user-edit/{{ $user->slug }}">{{-- Metode PUT --}}
-                                    <button type="submit" class="btn btn-sm mb-4 btn-outline-danger ">
+                                <a href="/user-edit/{{ $user->slug }}">
+                                    <button type="submit" class="btn btn-sm mb-4 btn-outline-danger  ">
                                         <i class="bi bi-pencil"></i>
                                         Edit
                                     </button>

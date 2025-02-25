@@ -5,6 +5,12 @@
 @section('content')
     <section class="vh-100 ">
         <div class="container py-5 h-100">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             <div class="text-center mb-5">
                 <h1 class="text-primary display-4 fw-bold">Detail Profile</h1>
 
